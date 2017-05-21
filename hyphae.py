@@ -5,7 +5,7 @@ from numpy import cos, sin, pi, arctan2, sqrt,\
                   square, int, linspace, any, all, array
 from numpy.random import random as random
 import numpy as np
-import cairo
+import cairocffi as cairo
 from time import time as time
 from operator import itemgetter
 from numpy.random import normal as normal
@@ -15,7 +15,7 @@ NMAX = 2*1e7 # maxmimum number of nodes
 SIZE = 15000
 ONE = 1./SIZE
 
-RAD = 40.*ONE # 
+RAD = 40.*ONE #
 
 ZONEWIDTH = 2.*(RAD/ONE)
 
@@ -82,7 +82,7 @@ class Render(object):
     self.ncolors = 1
 
   def get_colors(self,f):
-    
+
     import Image
     from random import shuffle
 
@@ -137,7 +137,7 @@ class Render(object):
 
     ## random radius?
     for x,y in zip(xp,yp):
-      self.ctx.arc(x,y,r,0,pi*2.) 
+      self.ctx.arc(x,y,r,0,pi*2.)
       self.ctx.fill()
 
   def sandpaint_line(self,x1,y1,x2,y2,r):
@@ -153,7 +153,7 @@ class Render(object):
     self.ctx.set_source_rgba(FRONT,FRONT,FRONT)
 
     for x,y in zip(xp,yp):
-      self.ctx.rectangle(x,y,ONE,ONE) 
+      self.ctx.rectangle(x,y,ONE,ONE)
       self.ctx.fill()
 
   def sandpaint_color_line(self,x1,y1,x2,y2,k):
@@ -170,13 +170,13 @@ class Render(object):
     self.ctx.set_source_rgba(r,g,b,ALPHA)
 
     for x,y in zip(xp,yp):
-      self.ctx.rectangle(x,y,ONE,ONE) 
+      self.ctx.rectangle(x,y,ONE,ONE)
       self.ctx.fill()
 
 def near_zone_inds(x,y,Z):
-  
-  i = 1+int(x*ZONES) 
-  j = 1+int(y*ZONES) 
+
+  i = 1+int(x*ZONES)
+  j = 1+int(y*ZONES)
   ij = np.array([i-1,i,i+1,i-1,i,i+1,i-1,i,i+1])*ZONES+\
        np.array([j+1,j+1,j+1,j,j,j,j-1,j-1,j-1])
 
@@ -188,8 +188,8 @@ def near_zone_inds(x,y,Z):
 
 def get_z(x,y):
 
-  i = 1+int(x*ZONES) 
-  j = 1+int(y*ZONES) 
+  i = 1+int(x*ZONES)
+  j = 1+int(y*ZONES)
   z = i*ZONES+j
   return z
 
@@ -303,7 +303,7 @@ def main():
 
         ## node is outside circle
         continue
-      
+
       try:
 
         inds = near_zone_inds(x,y,Z)
@@ -321,8 +321,8 @@ def main():
         sqrt(dd,dd)
         mask = dd*2 > R[inds]+r
         good = mask.all()
-        
-      if good: 
+
+      if good:
         X[num] = x
         Y[num] = y
         R[num] = r
@@ -334,7 +334,7 @@ def main():
         if D[k]<0:
           D[k] = num
 
-        z = get_z(x,y) 
+        z = get_z(x,y)
 
         Z[z].append(num)
 
@@ -376,4 +376,3 @@ if __name__ == '__main__':
     p.strip_dirs().sort_stats('cumulative').print_stats()
   else:
     main()
-
