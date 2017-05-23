@@ -55,13 +55,13 @@ GRAINS = 10
 INIT_CIRCLE = 0.45
 
 
-print
-print 'filename',filename
-print 'SIZE', SIZE
-print 'ZONEWIDTH', ZONEWIDTH
-print 'RAD', RAD
-print 'ZONES', ZONES
-print 'one', ONE
+print()
+print('filename',filename)
+print('SIZE', SIZE)
+print('ZONEWIDTH', ZONEWIDTH)
+print('RAD', RAD)
+print('ZONES', ZONES)
+print('one', ONE)
 
 
 class Render(object):
